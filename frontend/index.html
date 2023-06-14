@@ -8,22 +8,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../backend/weather-consumer.js"></script>
     <title>Weather Forecast</title>
 </head>
 
 <body>
-    <div>
-        <input placeholder="Digite o nome da cidade">
-        <button>Buscar</button>
+    <div class="main-box">
+        <input class="input-city" placeholder="Digite o nome da cidade">
+        <button class="search-button">
+            <img class="img-search" alt="busca" src=" https://www.svgrepo.com/show/488200/find.svg">
+        </button>
 
-        <h2>Tempo Fortaleza</h2>
+        <div class="medium-box">
+            <h2 class="city">Escreva o nome da cidade</h2>
 
-        <p>21°C</p>
+            <p class="temperature">°C</p>
 
-        <img alt="weather-icon" src=" https://openweathermap.org/img/wn/04d.png">
-        <p>Nublado</p>
+            <div class="small-box">
 
-        <p>umidade 76%</p>
+            </div>
+            <img class="icon-forecast" 
+                alt="weather-icon" src=" https://openweathermap.org/img/wn/04d.png">
+            <p class="text-forecast"></p>
+
+            <p class="humidity">Umidade:</p>
+        </div>
+
     </div>
 </body>
 

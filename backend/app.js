@@ -2,12 +2,16 @@ require('dotenv').config();
 
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 const WeatherData = require('./models/WeatherData');
 
 const app = express();
 const port = parseInt(process.env.PORT, 10); // Convertendo para inteiro
 
 const apiKey = process.env.API_KEY;
+
+// Configurando o CORS
+app.use(cors());
 
 // Rota previsão do tempo
 app.get('/weather/:city', async (req, res) => {
@@ -20,10 +24,14 @@ app.get('/weather/:city', async (req, res) => {
     );
 
     // Extrai os dados relevantes da resposta
+    const temperatureKelvin = response.data.main.temp;
+    const temperatureCelsius = (temperatureKelvin - 273.15).toFixed(1); // Conversão de Kelvin para Celsius com 1 casa decimal
+
     const weatherData = new WeatherData(
       response.data.name,
-      response.data.main.temp,
-      response.data.weather[0].description
+      temperatureCelsius,
+      response.data.weather[0].description,
+      response.data.main.humidity
     );
 
     res.json(weatherData); // Retorna previsão do tempo
@@ -36,4 +44,5 @@ app.get('/weather/:city', async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor está funcionando!`);
 });
+
 
