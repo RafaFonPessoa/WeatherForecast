@@ -8,7 +8,8 @@ const WeatherData = require('./models/WeatherData');
 const app = express();
 const port = parseInt(process.env.PORT, 10); // Convertendo para inteiro
 
-const apiKey = process.env.API_KEY;
+const PORT = 3000;
+const apiKey = '6c56c3f0ba38bf5f22e08f329df8cf40';
 
 // Configurando o CORS
 app.use(cors());
