@@ -1,10 +1,13 @@
+require('dotenv').config();
+
 const express = require('express');
 const axios = require('axios');
 const WeatherData = require('./models/WeatherData');
 
 const app = express();
-const PORT = 3000;
-// 6c56c3f0ba38bf5f22e08f329df8cf40
+const port = parseInt(process.env.PORT, 10); // Convertendo para inteiro
+
+const apiKey = process.env.API_KEY;
 
 // Rota previsão do tempo
 app.get('/weather/:city', async (req, res) => {
@@ -13,7 +16,7 @@ app.get('/weather/:city', async (req, res) => {
 
     // Chama a API do OpenWeatherMap
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=6c56c3f0ba38bf5f22e08f329df8cf40`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
     );
 
     // Extrai os dados relevantes da resposta
@@ -30,7 +33,7 @@ app.get('/weather/:city', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+app.listen(port, () => {
+  console.log(`Servidor está funcionando!`);
 });
 
